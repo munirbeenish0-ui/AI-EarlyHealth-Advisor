@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarlyHealth Advisor | Heart Health Awareness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2a6b8f;
+            --primary-light: #4a8bb0;
+            --secondary: #34a853;
+            --warning: #f9a825;
+            --danger: #ea4335;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #1a4a66);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #a5d8ff;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #a5d8ff;
+            font-weight: 300;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(42, 107, 143, 0.9), rgba(42, 107, 143, 0.8)), url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #2d8c4a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 168, 83, 0.4);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 i {
+            color: var(--primary-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e1e5eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(42, 107, 143, 0.2);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .select-control {
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 2px solid #e1e5eb;
+            width: 100%;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .risk-indicator {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .risk-low {
+            background-color: rgba(52, 168, 83, 0.1);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .risk-moderate {
+            background-color: rgba(249, 168, 37, 0.1);
+            border-left: 5px solid var(--warning);
+        }
+
+        .risk-elevated {
+            background-color: rgba(234, 67, 53, 0.1);
+            border-left: 5px solid var(--danger);
+        }
+
+        .risk-high {
+            background-color: rgba(234, 67, 53, 0.2);
+            border-left: 5px solid #b71c1c;
+        }
+
+        .risk-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-section {
+            margin-top: 1.5rem;
+        }
+
+        .report-section h4 {
+            color: var(--primary);
+            margin: 1.5rem 0 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .bullet-list {
+            list-style-type: none;
+        }
+
+        .bullet-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .bullet-list li:before {
+            content: "•";
+            color: var(--primary-light);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .suggestion-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .disclaimer {
+            background-color: #fff8e1;
+            border-left: 5px solid var(--warning);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.2rem;
+            color: #a5d8ff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .info-box {
+            background-color: #e8f4fc;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .value-status {
+            font-size: 0.85rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .status-good {
+            background-color: rgba(52, 168, 83, 0.15);
+            color: var(--secondary);
+        }
+
+        .status-warning {
+            background-color: rgba(249, 168, 37, 0.15);
+            color: var(--warning);
+        }
+
+        .status-danger {
+            background-color: rgba(234, 67, 53, 0.15);
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-heartbeat logo-icon"></i>
+                <h1>EarlyHealth <span>Advisor</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Resources</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Your Heart Health Awareness Companion</h2>
+            <p>EarlyHealth Advisor provides educational cardiovascular risk awareness and healthy lifestyle guidance. Understand your risk factors and get personalized suggestions for a healthier heart.</p>
+            <a href="#assessment" class="cta-button">Start Your Assessment <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="card">
+                <h3><i class="fas fa-clipboard-list"></i> Health Assessment</h3>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Important:</strong> This tool provides educational awareness only. It is NOT a medical diagnosis. Always consult a qualified healthcare professional for medical advice.
+                </div>
+                
+                <form id="healthForm">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="age">Age <span id="age-status" class="value-status"></span></label>
+                            <input type="number" id="age" class="form-control" min="18" max="100" placeholder="Enter your age">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" class="select-control">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other / Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="height">Height (cm) <span id="height-status" class="value-status"></span></label>
+                            <input type="number" id="height" class="form-control" min="100" max="250" placeholder="e.g., 175">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg) <span id="weight-status" class="value-status"></span></label>
+                            <input type="number" id="weight" class="form-control" min="30" max="300" placeholder="e.g., 75">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="sys">Systolic BP (mmHg) <span id="sys-status" class="value-status"></span></label>
+                            <input type="number" id="sys" class="form-control" min="70" max="250" placeholder="Upper number">
+                        </div>
+                        <div class="form-group">
+                            <label for="dia">Diastolic BP (mmHg) <span id="dia-status" class="value-status"></span></label>
+                            <input type="number" id="dia" class="form-control" min="40" max="150" placeholder="Lower number">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="chol">Cholesterol (mg/dL) <span id="chol-status" class="value-status"></span></label>
+                            <input type="number" id="chol" class="form-control" min="100" max="400" placeholder="e.g., 190">
+                        </div>
+                        <div class="form-group">
+                            <label for="glucose">Glucose (mg/dL) <span id="glucose-status" class="value-status"></span></label>
+                            <input type="number" id="glucose" class="form-control" min="70" max="300" placeholder="e.g., 95">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="smoker">Smoking Status</label>
+                            <select id="smoker" class="select-control">
+                                <option value="">Select option</option>
+                                <option value="non-smoker">Non-smoker</option>
+                                <option value="former-smoker">Former smoker</option>
+                                <option value="occasional">Occasional smoker</option>
+                                <option value="regular">Regular smoker</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity">Physical Activity</label>
+                            <select id="activity" class="select-control">
+                                <option value="">Select activity level</option>
+                                <option value="sedentary">Sedentary (little/no exercise)</option>
+                                <option value="light">Light (1-3 days/week)</option>
+                                <option value="moderate">Moderate (3-5 days/week)</option>
+                                <option value="active">Active (6-7 days/week)</option>
+                                <option value="athlete">Athlete (intense training daily)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="question">Your Question or Symptoms (Optional)</label>
+                        <textarea id="question" class="form-control" rows="3" placeholder="Describe any symptoms or ask a health question..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button" style="width: 100%;">
+                        <i class="fas fa-heartbeat"></i> Generate Health Report
+                    </button>
+                </form>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Analyzing your health profile...</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-file-medical-alt"></i> Your Health Report</h3>
+                <p>Complete the form to generate your personalized cardiovascular health awareness report.</p>
+                
+                <div id="reportContent">
+                    <div class="info-box">
+                        <i class="fas fa-stethoscope"></i>
+                        <strong>How it works:</strong> Enter your health metrics on the left to receive a personalized report here. The analysis considers relationships between your age, BMI, blood pressure, glucose, cholesterol, smoking, and activity levels.
+                    </div>
+                    
+                    <div id="riskIndicator" class="risk-indicator">
+                        <div class="risk-title" id="riskTitle">Risk Level: Not assessed</div>
+                        <p id="riskDescription">Please complete the form to see your risk assessment.</p>
+                    </div>
+                    
+                    <div class="report-section" id="summarySection">
+                        <h4>SUMMARY:</h4>
+                        <p id="summaryText">Your summary will appear here after assessment.</p>
+                    </div>
+                    
+                    <div class="report-section" id="factorsSection">
+                        <h4>KEY INFLUENCING FACTORS:</h4>
+                        <ul class="bullet-list" id="factorsList">
+                            <li>Complete the assessment to see your key factors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="report-section" id="suggestionsSection">
+                        <h4>PERSONALIZED SUGGESTIONS:</h4>
+                        <div id="suggestionsList">
+                            <div class="suggestion-item">
+                                <strong>Nutrition:</strong> Focus on a heart-healthy diet rich in fruits, vegetables, whole grains, and lean proteins.
+                            </div>
+                            <div class="suggestion-item">
+                                <strong>Exercise:</strong> Aim for at least 150 minutes of moderate-intensity activity per week.
+                            </div>
+                            <div class="suggestion-item">
+                                <strong>Monitoring:</strong> Regularly check your blood pressure and consider annual health check-ups.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-section" id="questionSection">
+                        <h4>ANSWER TO USER QUESTION:</h4>
+                        <p id="questionAnswer">No specific question was asked.</p>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <strong><i class="fas fa-exclamation-triangle"></i> Remember:</strong> EarlyHealth Advisor is an educational tool, not a medical professional. Always consult with a qualified healthcare provider for medical advice, diagnosis, or treatment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EarlyHealth Advisor</h4>
+                    <p>Providing educational cardiovascular risk awareness and healthy lifestyle guidance since 2023.</p>
+                    <p><i class="fas fa-heart"></i> Your heart health matters.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Heart Health Resources</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@earlyhealthadvisor.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (800) 123-HEART</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Ave, Health City</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 EarlyHealth Advisor. All rights reserved. This tool is for educational purposes only and does not provide medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('healthForm');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const reportContent = document.getElementById('reportContent');
+            
+            // Elements for report display
+            const riskIndicator = document.getElementById('riskIndicator');
+            const riskTitle = document.getElementById('riskTitle');
+            const riskDescription = document.getElementById('riskDescription');
+            const summaryText = document.getElementById('summaryText');
+            const factorsList = document.getElementById('factorsList');
+            const suggestionsList = document.getElementById('suggestionsList');
+            const questionAnswer = document.getElementById('questionAnswer');
+            
+            // Input elements
+            const ageInput = document.getElementById('age');
+            const heightInput = document.getElementById('height');
+            const weightInput = document.getElementById('weight');
+            const sysInput = document.getElementById('sys');
+            const diaInput = document.getElementById('dia');
+            const cholInput = document.getElementById('chol');
+            const glucoseInput = document.getElementById('glucose');
+            
+            // Status indicators
+            const ageStatus = document.getElementById('age-status');
+            const heightStatus = document.getElementById('height-status');
+            const weightStatus = document.getElementById('weight-status');
+            const sysStatus = document.getElementById('sys-status');
+            const diaStatus = document.getElementById('dia-status');
+            const cholStatus = document.getElementById('chol-status');
+            const glucoseStatus = document.getElementById('glucose-status');
+            
+            // Add real-time validation for inputs
+            [ageInput, heightInput, weightInput, sysInput, diaInput, cholInput, glucoseInput].forEach(input => {
+                input.addEventListener('input', updateValueStatus);
+            });
+            
+            function updateValueStatus() {
+                // Age validation
+                if (ageInput.value) {
+                    const age = parseInt(ageInput.value);
+                    if (age < 30) ageStatus.textContent = "Young";
+                    else if (age < 50) ageStatus.textContent = "Middle";
+                    else ageStatus.textContent = "Senior";
+                    ageStatus.className = "value-status status-good";
+                } else {
+                    ageStatus.textContent = "";
+                }
+                
+                // Height validation
+                if (heightInput.value) {
+                    const height = parseInt(heightInput.value);
+                    if (height < 150) heightStatus.textContent = "Short";
+                    else if (height < 180) heightStatus.textContent = "Average";
+                    else heightStatus.textContent = "Tall";
+                    heightStatus.className = "value-status status-good";
+                } else {
+                    heightStatus.textContent = "";
+                }
+                
+                // Weight validation
+                if (weightInput.value) {
+                    const weight = parseInt(weightInput.value);
+                    if (weight < 60) weightStatus.textContent = "Light";
+                    else if (weight < 90) weightStatus.textContent = "Average";
+                    else weightStatus.textContent = "Heavy";
+                    weightStatus.className = "value-status status-good";
+                } else {
+                    weightStatus.textContent = "";
+                }
+                
+                // Systolic BP validation
+                if (sysInput.value) {
+                    const sys = parseInt(sysInput.value);
+                    if (sys < 120) {
+                        sysStatus.textContent = "Normal";
+                        sysStatus.className = "value-status status-good";
+                    } else if (sys < 130) {
+                        sysStatus.textContent = "Elevated";
+                        sysStatus.className = "value-status status-warning";
+                    } else if (sys < 140) {
+                        sysStatus.textContent = "High Stage 1";
+                        sysStatus.className = "value-status status-warning";
+                    } else {
+                        sysStatus.textContent = "High Stage 2";
+                        sysStatus.className = "value-status status-danger";
+                    }
+                } else {
+                    sysStatus.textContent = "";
+                }
+                
+                // Diastolic BP validation
+                if (diaInput.value) {
+                    const dia = parseInt(diaInput.value);
+                    if (dia < 80) {
+                        diaStatus.textContent = "Normal";
+                        diaStatus.className = "value-status status-good";
+                    } else if (dia < 90) {
+                        diaStatus.textContent = "High Stage 1";
+                        diaStatus.className = "value-status status-warning";
+                    } else {
+                        diaStatus.textContent = "High Stage 2";
+                        diaStatus.className = "value-status status-danger";
+                    }
+                } else {
+                    diaStatus.textContent = "";
+                }
+                
+                // Cholesterol validation
+                if (cholInput.value) {
+                    const chol = parseInt(cholInput.value);
+                    if (chol < 200) {
+                        cholStatus.textContent = "Desirable";
+                        cholStatus.className = "value-status status-good";
+                    } else if (chol < 240) {
+                        cholStatus.textContent = "Borderline";
+                        cholStatus.className = "value-status status-warning";
+                    } else {
+                        cholStatus.textContent = "High";
+                        cholStatus.className = "value-status status-danger";
+                    }
+                } else {
+                    cholStatus.textContent = "";
+                }
+                
+                // Glucose validation
+                if (glucoseInput.value) {
+                    const glucose = parseInt(glucoseInput.value);
+                    if (glucose < 100) {
+                        glucoseStatus.textContent = "Normal";
+                        glucoseStatus.className = "value-status status-good";
+                    } else if (glucose < 126) {
+                        glucoseStatus.textContent = "Prediabetes";
+                        glucoseStatus.className = "value-status status-warning";
+                    } else {
+                        glucoseStatus.textContent = "Diabetes";
+                        glucoseStatus.className = "value-status status-danger";
+                    }
+                } else {
+                    glucoseStatus.textContent = "";
+                }
+            }
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                reportContent.style.opacity = '0.5';
+                
+                // Simulate processing delay
+                setTimeout(generateReport, 1500);
+            });
+            
+            function generateReport() {
+                // Get form values
+                const age = parseInt(ageInput.value) || 0;
+                const gender = document.getElementById('gender').value || 'not specified';
+                const height = parseInt(heightInput.value) || 0;
+                const weight = parseInt(weightInput.value) || 0;
+                const sys = parseInt(sysInput.value) || 0;
+                const dia = parseInt(diaInput.value) || 0;
+                const chol = parseInt(cholInput.value) || 0;
+                const glucose = parseInt(glucoseInput.value) || 0;
+                const smoker = document.getElementById('smoker').value || 'not specified';
+                const activity = document.getElementById('activity').value || 'not specified';
+                const question = document.getElementById('question').value || '';
+                
+                // Calculate BMI if height and weight are available
+                let bmi = 0;
+                let bmiCategory = 'Not calculated';
+                if (height > 0 && weight > 0) {
+                    // Convert height from cm to meters
+                    const heightM = height / 100;
+                    bmi = weight / (heightM * heightM);
+                    
+                    if (bmi < 18.5) bmiCategory = 'Underweight';
+                    else if (bmi < 25) bmiCategory = 'Normal';
+                    else if (bmi < 30) bmiCategory = 'Overweight';
+                    else bmiCategory = 'Obese';
+                }
+                
+                // Determine risk level
+                let riskLevel = 'Low';
+                let riskClass = 'risk-low';
+                let riskFactors = 0;
+                
+                // Check each risk factor
+                if (age >= 45) riskFactors++;
+                if (bmi >= 25) riskFactors++;
+                if (sys >= 130 || dia >= 85) riskFactors++;
+                if (chol >= 200) riskFactors++;
+                if (glucose >= 100) riskFactors++;
+                if (smoker === 'regular' || smoker === 'occasional') riskFactors++;
+                if (activity === 'sedentary' || activity === 'light') riskFactors++;
+                
+                // Determine risk level based on factors
+                if (riskFactors <= 2) {
+                    riskLevel = 'Low';
+                    riskClass = 'risk-low';
+                } else if (riskFactors <= 4) {
+                    riskLevel = 'Moderate';
+                    riskClass = 'risk-moderate';
+                } else if (riskFactors <= 6) {
+                    riskLevel = 'Elevated';
+                    riskClass = 'risk-elevated';
+                } else {
+                    riskLevel = 'High';
+                    riskClass = 'risk-high';
+                }
+                
+                // Update risk indicator
+                riskIndicator.style.display = 'block';
+                riskIndicator.className = `risk-indicator ${riskClass}`;
+                riskTitle.textContent = `Risk Level: ${riskLevel}`;
+                
+                // Generate risk description
+                let riskDesc = '';
+                if (riskLevel === 'Low') {
+                    riskDesc = 'Your profile shows few cardiovascular risk factors. Maintaining your healthy habits is key.';
+                } else if (riskLevel === 'Moderate') {
+                    riskDesc = 'Your profile shows some areas that could benefit from attention. Making small improvements can have a positive impact.';
+                } else if (riskLevel === 'Elevated') {
+                    riskDesc = 'Your profile shows several factors that may increase cardiovascular risk. Proactive lifestyle changes are recommended.';
+                } else {
+                    riskDesc = 'Your profile shows multiple cardiovascular risk factors. Taking action and consulting a healthcare professional is important.';
+                }
+                riskDescription.textContent = riskDesc;
+                
+                // Generate summary
+                let summary = '';
+                if (age > 0) {
+                    summary += `Based on the information you've shared, your ${age}-year-old profile shows `;
+                } else {
+                    summary += `Based on the information you've shared, your profile shows `;
+                }
+                
+                if (riskLevel === 'Low') {
+                    summary += `a generally healthy pattern with few cardiovascular risk factors. `;
+                } else if (riskLevel === 'Moderate') {
+                    summary += `a mix of positive and modifiable factors. `;
+                } else {
+                    summary += `several areas that could benefit from attention for better heart health. `;
+                }
+                
+                if (sys > 0 && dia > 0) {
+                    if (sys < 120 && dia < 80) {
+                        summary += `Your blood pressure is within a healthy range.`;
+                    } else {
+                        summary += `Focusing on modifiable risk factors can benefit your overall cardiovascular wellness.`;
+                    }
+                }
+                
+                summaryText.textContent = summary;
+                
+                // Generate key influencing factors
+                factorsList.innerHTML = '';
+                const factors = [];
+                
+                if (bmi >= 25) {
+                    factors.push(`<strong>BMI:</strong> Your Body Mass Index (${bmi.toFixed(1)}) falls into the <strong>${bmiCategory}</strong> category. Maintaining a healthy weight supports heart health.`);
+                } else if (bmi > 0) {
+                    factors.push(`<strong>BMI:</strong> Your Body Mass Index (${bmi.toFixed(1)}) is in the <strong>${bmiCategory}</strong> range, which is positive for heart health.`);
+                }
+                
+                if (sys >= 130 || dia >= 85) {
+                    factors.push(`<strong>Blood Pressure:</strong> Your reading (${sys}/${dia} mmHg) is above the optimal range. Managing blood pressure is important for cardiovascular health.`);
+                } else if (sys > 0) {
+                    factors.push(`<strong>Blood Pressure:</strong> Your reading (${sys}/${dia} mmHg) is within a healthy range, which is excellent for heart health.`);
+                }
+                
+                if (chol >= 200) {
+                    factors.push(`<strong>Cholesterol:</strong> Your level (${chol} mg/dL) is above optimal. Diet and exercise can positively influence cholesterol.`);
+                } else if (chol > 0) {
+                    factors.push(`<strong>Cholesterol:</strong> Your level (${chol} mg/dL) is in a desirable range, which is beneficial for cardiovascular health.`);
+                }
+                
+                if (glucose >= 100) {
+                    factors.push(`<strong>Glucose:</strong> Your level (${glucose} mg/dL) suggests attention to blood sugar management may be beneficial.`);
+                } else if (glucose > 0) {
+                    factors.push(`<strong>Glucose:</strong> Your level (${glucose} mg/dL) is in a normal range, which is positive for metabolic health.`);
+                }
+                
+                if (smoker === 'regular' || smoker === 'occasional') {
+                    factors.push(`<strong>Smoking Status:</strong> Smoking is a significant modifiable risk factor for cardiovascular disease.`);
+                } else if (smoker === 'former-smoker') {
+                    factors.push(`<strong>Smoking Status:</strong> Being a former smoker is positive. The cardiovascular benefits of quitting continue over time.`);
+                }
+                
+                if (activity === 'sedentary' || activity === 'light') {
+                    factors.push(`<strong>Physical Activity:</strong> Increasing your activity level can benefit heart health, weight management, and overall wellness.`);
+                } else if (activity === 'moderate' || activity === 'active' || activity === 'athlete') {
+                    factors.push(`<strong>Physical Activity:</strong> Your activity level supports cardiovascular health. Maintaining regular exercise is beneficial.`);
+                }
+                
+                // Add age if it's a risk factor
+                if (age >= 45) {
+                    factors.push(`<strong>Age:</strong> Cardiovascular risk naturally increases with age, making healthy lifestyle choices even more important.`);
+                }
+                
+                // If no specific factors were identified
+                if (factors.length === 0) {
+                    factors.push(`Complete the assessment form to see your personalized key factors.`);
+                }
+                
+                factors.forEach(factor => {
+                    const li = document.createElement('li');
+                    li.innerHTML = factor;
+                    factorsList.appendChild(li);
+                });
+                
+                // Generate personalized suggestions
+                suggestionsList.innerHTML = '';
+                const suggestions = [];
+                
+                if (bmi >= 25 || activity === 'sedentary') {
+                    suggestions.push(`<div class="suggestion-item"><strong>Movement:</strong> Aim for at least 150 minutes of moderate activity per week. Start with a daily 20-30 minute brisk walk.</div>`);
+                }
+                
+                if (chol >= 200 || bmi >= 25) {
+                    suggestions.push(`<div class="suggestion-item"><strong>Nutrition:</strong> Increase fiber intake (oats, beans, fruits) and healthy fats (avocado, nuts, olive oil). Reduce processed foods and sugary drinks.</div>`);
+                }
+                
+                if (sys >= 130 || dia >= 85) {
+                    suggestions.push(`<div class="suggestion-item"><strong>Sodium Awareness:</strong> Reduce salt intake by flavoring foods with herbs and spices instead. Check nutrition labels for sodium content.</div>`);
+                }
+                
+                if (glucose >= 100) {
+                    suggestions.push(`<div class="suggestion-item"><strong>Blood Sugar Management:</strong> Choose complex carbohydrates (whole grains, vegetables) over refined carbs. Regular meals can help maintain stable glucose levels.</div>`);
+                }
+                
+                if (smoker === 'regular' || smoker === 'occasional') {
+                    suggestions.push(`<div class="suggestion-item"><strong>Smoking Cessation:</strong> Consider resources to help reduce or quit smoking. The cardiovascular benefits begin immediately after quitting.</div>`);
+                }
+                
+                // Default suggestions
+                suggestions.push(`<div class="suggestion-item"><strong>Hydration:</strong> Drink adequate water throughout the day. Proper hydration supports all bodily functions including cardiovascular health.</div>`);
+                suggestions.push(`<div class="suggestion-item"><strong>Sleep & Stress:</strong> Aim for 7-9 hours of quality sleep nightly. Practice stress-reduction techniques like deep breathing or meditation.</div>`);
+                
+                suggestions.forEach(suggestion => {
+                    suggestionsList.innerHTML += suggestion;
+                });
+                
+                // Handle user question
+                if (question.trim()) {
+                    questionAnswer.textContent = question + " - This is a great question to discuss with a healthcare provider during your next check-up. They can provide personalized guidance based on your complete medical history.";
+                } else {
+                    questionAnswer.textContent = "No specific question was asked.";
+                }
+                
+                // Hide loading indicator and show report
+                loadingIndicator.style.display = 'none';
+                reportContent.style.opacity = '1';
+                
+                // Smooth scroll to report
+                document.querySelector('.card:nth-child(2)').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Initialize with sample data for demonstration
+            function initializeSampleData() {
+                ageInput.value = 48;
+                document.getElementById('gender').value = 'male';
+                heightInput.value = 175;
+                weightInput.value = 82;
+                sysInput.value = 128;
+                diaInput.value = 84;
+                cholInput.value = 210;
+                glucoseInput.value = 102;
+                document.getElementById('smoker').value = 'non-smoker';
+                document.getElementById('activity').value = 'light';
+                document.getElementById('question').value = 'I sometimes feel lightheaded after exercise. Should I be concerned?';
+                
+                // Update status indicators
+                updateValueStatus();
+            }
+            
+            // Uncomment the line below to initialize with sample data for demo
+            // initializeSampleData();
+        });
+    </script>
+</body>
+</html>
